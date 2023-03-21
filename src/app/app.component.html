@@ -1,0 +1,78 @@
+<div class="nav">
+  Pets&Health
+</div>
+
+<div style="width: 70%; margin:40px auto">
+
+  <div>
+    <button mat-raised-button (click)="addCustomer()" color="primary"> Add Customer</button>
+  </div>
+<br>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef> Phone </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerPhone}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="customerType">
+        <th mat-header-cell *matHeaderCellDef> Customer Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerTypeIdName}} </td>
+      </ng-container>
+
+       <!-- Symbol Column -->
+       <ng-container matColumnDef="customerEmail">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerEmail}} </td>
+      </ng-container>
+
+       <!-- Symbol Column -->
+       <ng-container matColumnDef="customerNationalID">
+        <th mat-header-cell *matHeaderCellDef> National ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerNationalId}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Acciones">
+        <th mat-header-cell *matHeaderCellDef style="width:80px;"> Acciones </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-icon-button color="Basic" (click)="editCustomer(element)">
+            <mat-icon>edit</mat-icon>
+          </button>  
+          <button mat-icon-button color="warn" (click)="deleteCustomer(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>{{tituloAccion}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formCustomer">
+        <mat-grid-list cols="1" rowHeight="370px" rowWidth="100px">
+          <div>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Name: </mat-label>
+              <input matInput formControlName="customerName" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Phone: </mat-label>
+              <input matInput formControlName="customerPhone" autocomplete="off" margin-left="10px">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Customer type</mat-label>
+                <mat-select formControlName="CustomerTypeId" >
+                  <mat-option *ngFor="let item of ListaCustType" [value]="item.id">
+                    {{item.customerTypeCode}}
+                  </mat-option>                 
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <div>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Email: </mat-label>
+              <input matInput formControlName="customerEmail" autocomplete="off" [email]="true">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>National Id: </mat-label>
+              <input matInput formControlName="customerNationalId" autocomplete="off">
+            </mat-form-field>
+          </div>     
+        </mat-grid-list>
+    </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="addEditCustomer()" [disabled]="formCustomer.invalid">{{botonSave}}</button>
+  <button mat-button mat-dialog-close color="warn">Close</button>
+</div>
